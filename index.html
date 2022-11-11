@@ -9,7 +9,39 @@
     <title>Library</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <header>
+        <h1>Welcome To My Library</h1>
+        <button id="addABookBTN" class="inputBTN">add a book</button>
+    </header>
+    <main>
+
+        <form id="bookDescriptionForm" action="/index.html" method="post">
+            <ul>
+                <li>
+                    <label for="title">Whats the title?  <input type="text" id="title" name="book_title"></label>
+                   
+                </li>
+                <li>
+                    <label for="author">Who is the author?<input type="text" id="author" name="book_author"></label>
+                    
+                </li>
+                <li>
+                    <label for="pages">How many pages is it? <input type="number" id="pages" name="book_pages"></label>
+                    
+                </li>
+                <li>
+                   <p>Have you finished it?</p>
+                   <label for="isRead">Yes <input type="radio" id="isRead" name="read_status" value="true"> </label>
+                   <label for="isRead">No <input type="radio" name="read_status" id="isRead" value="false"></label>
+                </li>
+                <li>
+                    <button class="inputBTN" id="submitBookBTN" type="submit">submit this book</button>
+                </li>
+            </ul>
+        </form>
+    </main>
+    
+
     
 </body>
 </html>
