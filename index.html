@@ -15,10 +15,10 @@
     </header>
     <main>
 
-        <form id="bookDescriptionForm" action="/index.html" method="post">
+        <form name="bookDescriptionForm" id="bookDescriptionForm" action="/index.html" method="post">
             <ul>
                 <li>
-                    <label for="title">Whats the title?  <input type="text" id="title" name="book_title"></label>
+                    <label for="title">Whats the title?<input type="text" id="title" name="book_title"></label>
                    
                 </li>
                 <li>
@@ -30,15 +30,11 @@
                     
                 </li>
                 <li>
-                   <p>Have you finished it?</p>
-                   <label for="isRead">Yes <input type="radio" id="isRead" name="read_status" value="true"> </label>
-                   <label for="isRead">No <input type="radio" name="read_status" id="isRead" value="false"></label>
-                </li>
-                <li>
-                    <button class="inputBTN" id="submitBookBTN" type="submit">submit this book</button>
+                    <button method="post" type="button" class="inputBTN" id="submitBookBTN" onclick="addBookToLibrary()">submit this book</button>
                 </li>
             </ul>
         </form>
+        <section class="library"></section>
     </main>
     
 

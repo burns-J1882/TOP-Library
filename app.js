@@ -25,25 +25,73 @@ let bookOne = {
 */
 
 
-let myLibrary = [];
 
-function Book(title, author, pages, isFiction, isFinished) {
+
+
+let placeholder = {
+  title : "Halloween",
+  author : "Mike Myers",
+  pages : 666,
+  isRead : true
+}
+
+let myLibrary = [placeholder];
+
+function Book(title, author, pages) {
   // the constructor...
   this.title = title
   this.author = author
   this.pages = pages
-  this.isFiction = isFiction
-  this.isFinished = isFinished
-
 }
 
-function addBookToLibrary() {
+function addBookToLibrary() { //take user’s input and store the new book objects into an array
   // do stuff here
+  //form name -> input name-> input value
+let anotherBook = new Book(bookDescriptionForm.title.value, bookDescriptionForm.author.value, bookDescriptionForm.pages.value);
+myLibrary.push(anotherBook);
+//console.table(myLibrary);
+document.getElementById("bookDescriptionForm").reset(); //clears previous form input
+//loop over array to create elements in the DOM from the objects 
+for (let i = 0; i < myLibrary.length; i++){
+  console.log(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages);
 }
 
+}
 
+//div>ul>li{title}{author}{pages} this is the element structure
+//trying to create the book, this will be added to the  addToLibrary Function
+const container = document.createElement('div');//the card that contains the object
+const ul = document.createElement('ul');//the structure for displaying the object
+const liTitle = document.createElement('li')//the individual object properties
+const liAuthor = document.createElement('li')
+const liPages = document.createElement('li')
+const libraryDisplay = document.querySelector(".library");//the library section in HTML
+
+container.classList.add('bookCard') ;
+
+//container.textContent = "are we working?";//dummy content, refactor to be dynamic
+liTitle.textContent = "Title";
+liAuthor.textContent = "Author";
+liPages.textContent = "Pages";
+
+ul.appendChild(liTitle);
+ul.appendChild(liAuthor);
+ul.appendChild(liPages)
+container.appendChild(ul);
+libraryDisplay.appendChild(container);
+
+
+
+
+
+//make the add book display a form
 const addBookBTN = document.querySelector('#addABookBTN');
-//click add a book to make the form visible
 addBookBTN.addEventListener('click', () => {
     document.getElementById("bookDescriptionForm").style.visibility = "visible" ;
 })
+//hide the form after submission
+const submitThisBookBTN = document.querySelector('#submitBookBTN');
+submitThisBookBTN.addEventListener('click', () => {
+  document.getElementById('bookDescriptionForm').style.visibility = "hidden";
+})
+

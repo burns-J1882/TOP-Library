@@ -118,3 +118,18 @@ header h1{
       button{
         margin-left:5em;
       }
+
+      
+/*this is the book cards created from the form*/
+
+.library{
+  background-color: black;
+  min-height: 200px;
+}
+
+.bookCard{
+  width: 200px;
+  height: 200px;
+  outline: 1px solid green;
+  background-color: blue;
+}
