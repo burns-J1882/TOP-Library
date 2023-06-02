@@ -29,8 +29,8 @@ let bookOne = {
 
 
 let placeholder = {
-  title : "Halloween",
-  author : "Mike Myers",
+  title : "Friday the 13th",
+  author : "Jasons Mom",
   pages : 666,
   isRead : true
 }
@@ -47,39 +47,56 @@ function Book(title, author, pages) {
 function addBookToLibrary() { //take user’s input and store the new book objects into an array
   // do stuff here
   //form name -> input name-> input value
-let anotherBook = new Book(bookDescriptionForm.title.value, bookDescriptionForm.author.value, bookDescriptionForm.pages.value);
+let anotherBook = new Book(
+  bookDescriptionForm.title.value, 
+  bookDescriptionForm.author.value, 
+  bookDescriptionForm.pages.value
+  );
+ // Check if the book is already in the library
+  let isDuplicate = false;
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (
+      myLibrary[i].title == anotherBook.title &&
+      myLibrary[i].author == anotherBook.author &&
+      myLibrary[i].pages == anotherBook.pages
+    ) {
+      isDuplicate = true;
+      alert("error")
+      break;
+    }};
+
 myLibrary.push(anotherBook);
-//console.table(myLibrary);
+createCard(anotherBook)
 document.getElementById("bookDescriptionForm").reset(); //clears previous form input
 //loop over array to create elements in the DOM from the objects 
-for (let i = 0; i < myLibrary.length; i++){
-  console.log(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages);
-}
 
 }
 
-//div>ul>li{title}{author}{pages} this is the element structure
-//trying to create the book, this will be added to the  addToLibrary Function
-const container = document.createElement('div');//the card that contains the object
-const ul = document.createElement('ul');//the structure for displaying the object
-const liTitle = document.createElement('li')//the individual object properties
-const liAuthor = document.createElement('li')
-const liPages = document.createElement('li')
-const libraryDisplay = document.querySelector(".library");//the library section in HTML
+//create book card
+function createCard (book) {
+  const card = document.createElement('div');//the card that contains the object
+  const ul = document.createElement('ul');//the structure for displaying the object
+  const liTitle = document.createElement('li');//the individual object properties
+  const liAuthor = document.createElement('li');
+  const liPages = document.createElement('li');
+ 
+  //add data to card
+  liTitle.textContent = book.title;
+  liAuthor.textContent = book.author;
+  liPages.textContent = book.pages;
 
-container.classList.add('bookCard') ;
+ //apppend it all
+  ul.appendChild(liTitle);
+  ul.appendChild(liAuthor);
+  ul.appendChild(liPages)
+  card.appendChild(ul);
+ 
+  const library = document.querySelector(".library");//the library section in HTML
+  library.appendChild(card);
 
-//container.textContent = "are we working?";//dummy content, refactor to be dynamic
-liTitle.textContent = "Title";
-liAuthor.textContent = "Author";
-liPages.textContent = "Pages";
-
-ul.appendChild(liTitle);
-ul.appendChild(liAuthor);
-ul.appendChild(liPages)
-container.appendChild(ul);
-libraryDisplay.appendChild(container);
-
+  card.classList.add('bookCard');
+  ul.classList.add('attributes');
+}
 
 
 
@@ -94,4 +111,3 @@ const submitThisBookBTN = document.querySelector('#submitBookBTN');
 submitThisBookBTN.addEventListener('click', () => {
   document.getElementById('bookDescriptionForm').style.visibility = "hidden";
 })
-

@@ -4,6 +4,7 @@
 --cornsilk: #fefae0ff;
 --earth-yellow: #dda15eff;
 --liver-dogs: #bc6c25ff;
+font-family: "Montserrat", sans-serif;
 }
 
 body{
@@ -17,26 +18,9 @@ header{
     color: var(--liver-dogs)
 }
 
-
-
 header h1{
     color:var(--dark-olive-green)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*start button styling*/
 .inputBTN{
@@ -122,14 +106,34 @@ header h1{
       
 /*this is the book cards created from the form*/
 
-.library{
-  background-color: black;
-  min-height: 200px;
+.library {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 150px));
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
-.bookCard{
-  width: 200px;
-  height: 200px;
-  outline: 1px solid green;
-  background-color: blue;
+.bookCard {
+  min-width: 50px;
+  max-width: 150px;
+  min-height: 50px;
+  max-height: 150px;
+   /* Add a frosted glass effect to the book card */
+   /* Add a frosted glass effect to the book card */
+  
+  background-color: rgba(255, 255, 255, 0.5);
+
+  /* Style the book card using trendy colors and fonts */
+  color: #333;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+
+  /* Add a border and rounded corners to the book card */
+  border: 2px solid #333;
+  border-radius: 10px;
+
+  /* Add some padding to the book card */
+  padding: 20px;
 }
