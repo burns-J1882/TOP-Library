@@ -23,11 +23,7 @@ let bookOne = {
 }
 
 */
-
-
-
-
-
+/*
 let placeholder = {
   title : "Friday the 13th",
   author : "Jasons Mom",
@@ -111,3 +107,36 @@ const submitThisBookBTN = document.querySelector('#submitBookBTN');
 submitThisBookBTN.addEventListener('click', () => {
   document.getElementById('bookDescriptionForm').style.visibility = "hidden";
 })
+*/
+//class structuring
+class Book {
+
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+  }
+
+  get bookTitle(){
+    return this.title;
+  }
+  get bookAuthor(){
+    return this._title;
+  }
+  get bookPages(){
+    return this.pages;
+  }
+
+set bookTitle(title){
+  if (title.length < 1){
+    alert('Too short');
+    return;
+  }
+  this.title = title;
+}
+
+}
+
+// Usage:
+//let book = new Book("Hells Kitchen", "gordon", 666);
+//book.sayTitle();
