@@ -117,24 +117,37 @@ class Book {
     this.pages = pages;
   }
 
-  get bookTitle(){
-    return this.title;
-  }
-  get bookAuthor(){
+  get title(){
     return this._title;
   }
+  get bookAuthor(){
+    return this._author;
+  }
   get bookPages(){
-    return this.pages;
+    return this._pages;
   }
 
-set bookTitle(title){
-  if (title.length < 1){
-    alert('Too short');
+set title(input){
+  if (input.length < 1){
+    alert('book title is too short');
     return;
   }
-  this.title = title;
+  return this._title = input;
 }
-
+set author(input){
+  if (input.length < 1){
+    alert('Please enter the name of the author');
+    return;
+  }
+  this._author = input;
+}
+set pages(input){
+  if (input < 1){
+    alert('PLease enter the number of pages');
+    return;
+  }
+  this._pages = input;
+}
 }
 
 // Usage:
