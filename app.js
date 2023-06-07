@@ -96,7 +96,7 @@ function createCard (book) {
 
 
 
-
+*/
 //make the add book display a form
 const addBookBTN = document.querySelector('#addABookBTN');
 addBookBTN.addEventListener('click', () => {
@@ -107,7 +107,8 @@ const submitThisBookBTN = document.querySelector('#submitBookBTN');
 submitThisBookBTN.addEventListener('click', () => {
   document.getElementById('bookDescriptionForm').style.visibility = "hidden";
 })
-*/
+
+
 //class structuring
 class Book {
 
@@ -150,6 +151,42 @@ set pages(input){
 }
 }
 
-// Usage:
-//let book = new Book("Hells Kitchen", "gordon", 666);
-//book.sayTitle();
+let myLibrary = [];
+
+function addBook (auth, tit, pag){
+  const myBook = new Book(auth, tit, pag);
+  //myLibrary.push(myBook);
+  avoidDuplication(myLibrary, myBook);
+}
+
+function avoidDuplication(library, book){
+  let isDuplicate = false;
+  library.forEach((item) => {
+    if (item.toString() === book.toString()) {
+      isDuplicate= true;
+      alert('Already in Library')
+    }
+  });
+  if (!isDuplicate) {
+    library.push(book)
+  }
+}
+
+
+/*
+function avoidDuplication(library, book){
+  library.push(book);
+  for (let i=0; i<library.length; i++){
+    if (library[i] === book){
+      alert("Book is already in library");
+      library.pop()
+      return;
+    } else {
+      library.push(book);
+    }
+  }
+  //take book thats been added
+  //if all the content matches a previous, remove it and alert the user
+  //if not add it and make a card
+}
+*/
