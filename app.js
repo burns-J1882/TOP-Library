@@ -1,5 +1,3 @@
-//console.log("Hello World")
-
 /*
 How will this work
 -user clicks a button that brings up a form (add book)
@@ -108,6 +106,15 @@ submitThisBookBTN.addEventListener('click', () => {
   document.getElementById('bookDescriptionForm').style.visibility = "hidden";
 })
 
+//data storage, logic of adding book to Library to the array
+let myLibrary = [];
+
+function addBook (auth, tit, pag){
+  const myBook = new Book(auth, tit, pag);
+
+  avoidDuplication(myLibrary, myBook);
+
+}
 
 //class structuring
 class Book {
@@ -121,10 +128,10 @@ class Book {
   get title(){
     return this._title;
   }
-  get bookAuthor(){
+  get author(){
     return this._author;
   }
-  get bookPages(){
+  get pages(){
     return this._pages;
   }
 
@@ -144,49 +151,61 @@ set author(input){
 }
 set pages(input){
   if (input < 1){
-    alert('PLease enter the number of pages');
+    alert('Please enter the number of pages');
     return;
   }
   this._pages = input;
 }
 }
 
-let myLibrary = [];
-
-function addBook (auth, tit, pag){
-  const myBook = new Book(auth, tit, pag);
-  //myLibrary.push(myBook);
-  avoidDuplication(myLibrary, myBook);
-}
-
+//runs when adding book to make sure theres no duplicates
 function avoidDuplication(library, book){
   let isDuplicate = false;
+
   library.forEach((item) => {
     if (item.toString() === book.toString()) {
       isDuplicate= true;
       alert('Already in Library')
+      console.log(item.toString(), book.toString());
     }
   });
   if (!isDuplicate) {
-    library.push(book)
+    library.push(book);
+    createBookCard(book)
   }
 }
 
-
-/*
-function avoidDuplication(library, book){
-  library.push(book);
-  for (let i=0; i<library.length; i++){
-    if (library[i] === book){
-      alert("Book is already in library");
-      library.pop()
-      return;
-    } else {
-      library.push(book);
-    }
-  }
-  //take book thats been added
-  //if all the content matches a previous, remove it and alert the user
-  //if not add it and make a card
+//submit book button on the DOM
+function submitBook(){
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = parseInt(document.getElementById("pages").value);
+  addBook(title, author, pages)
+  //render the library
+  //render the card
 }
-*/
+
+//runs after book is confirmed to not be duplicated
+function createBookCard(bookObject){
+  //create card
+  const library = document.querySelector(".library");//the library section in HTML
+  const card = document.createElement('div');//the card that contains the object
+  const ul = document.createElement('ul');//the structure for displaying the object
+  const liTitle = document.createElement('li');//the individual object properties
+  const liAuthor = document.createElement('li');
+  const liPages = document.createElement('li');
+
+  liTitle.textContent = bookObject.title;
+  liAuthor.textContent = bookObject.author;
+  liPages.textContent = bookObject.pages;
+
+  ul.appendChild(liTitle);
+  ul.appendChild(liAuthor);
+  ul.appendChild(liPages)
+  card.appendChild(ul);
+  library.appendChild(card);
+
+  card.classList.add('bookCard');
+  ul.classList.add('attributes');
+ 
+}
